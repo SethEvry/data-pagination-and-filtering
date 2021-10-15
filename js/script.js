@@ -39,8 +39,8 @@ const showPage = (list, page) => {
       }
     }
   } else {
-    const error = `<h1>No results found!</h1>`;
-    ul.insertAdjacentHTML("beforeend", error);
+    const noResults = `<h1 class='no-results'>No results found!</h1>`;
+    ul.insertAdjacentHTML("beforeend", noResults);
   }
 };
 
