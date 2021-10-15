@@ -22,30 +22,19 @@ const showPage = (list, page) => {
   for (let i = 0; i < list.length; i++) {
     if (i >= startIndex && i < endIndex) {
       const student = list[i];
-      const li = document.createElement("li");
-      li.className = "student-item cf";
-      const div1 = document.createElement("div");
-      div1.className = "student-details";
-      const img = document.createElement("img");
-      img.className = "avatar";
-      img.src = student.picture.medium;
-      const h3 = document.createElement("h3");
-      h3.textContent = `${student.name.first} ${student.name.second}`;
-      const span1 = document.createElement("span");
-      span1.className = "email";
-      span1.textContent = student.email;
-      const div2 = document.createElement("div");
-      div2.className = "joined-details";
-      const span2 = document.createElement("span");
-      span2.className = "date";
-      span2.textContent = `Joined ${student.registered.date}`;
-      li.appendChild(div1);
-      li.appendChild(div2);
-      div1.appendChild(img);
-      div1.appendChild(h3);
-      div1.appendChild(span1);
-      div2.appendChild(span2);
-      ul.appendChild(li);
+      const template = `
+      <li class="student-item cf">
+      <div class="student-details">
+        <img class="avatar" src=${student.picture.medium} alt="Profile Picture">
+        <h3>${student.first} ${student.last}</h3>
+        <span class="email">${student.email}</span>
+      </div>
+      <div class="joined-details">
+        <span class="date">Joined ${student.registered.date}</span>
+      </div>
+    </li> 
+      `;
+      ul.insertAdjacentHTML("beforeend", template);
     }
   }
 };
