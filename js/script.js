@@ -90,8 +90,8 @@ const addSearch = (list) => {
    </label>
    `;
   header.insertAdjacentHTML("beforeend", searchBar);
-  header.addEventListener("keyup", (e) => {
-    const value = e.target.value.toLowerCase();
+  const handleSearch = () => {
+    const value = header.querySelector("input").value.toLowerCase();
     let newList = [];
     for (let student of list) {
       const name = `${student.name.first.toLowerCase()} ${student.name.last.toLowerCase()}`;
@@ -101,6 +101,12 @@ const addSearch = (list) => {
     }
     showPage(newList, 1);
     addPagination(newList);
+  };
+  header.addEventListener("keyup", (e) => handleSearch());
+  header.addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON" || e.target.tagName === "IMG") {
+      handleSearch();
+    }
   });
 };
 
