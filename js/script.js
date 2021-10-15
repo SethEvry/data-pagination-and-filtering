@@ -77,7 +77,8 @@ const addPagination = (list) => {
 
 /*
 Create addSearch function
-This function will filter through profiles
+This function will create a new array based on search input
+ and use it to call ShowPage() and addPagination()
 */
 
 const addSearch = (list) => {
@@ -104,6 +105,7 @@ const addSearch = (list) => {
   };
   header.addEventListener("keyup", (e) => handleSearch());
   header.addEventListener("click", (e) => {
+    // To make sure either the button or the search icon on top of the button are clicked.
     if (e.target.tagName === "BUTTON" || e.target.tagName === "IMG") {
       handleSearch();
     }
