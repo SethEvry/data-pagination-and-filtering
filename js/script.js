@@ -26,7 +26,7 @@ const showPage = (list, page) => {
       <li class="student-item cf">
       <div class="student-details">
         <img class="avatar" src=${student.picture.medium} alt="Profile Picture">
-        <h3>${student.first} ${student.last}</h3>
+        <h3>${student.name.first} ${student.name.last}</h3>
         <span class="email">${student.email}</span>
       </div>
       <div class="joined-details">
@@ -43,5 +43,33 @@ const showPage = (list, page) => {
 Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
+const addPagination = (list) => {
+  const pagesNeeded = Math.ceil(list.length / 9);
+  const ul = document.querySelector(".link-list");
+  ul.innerHTML = "";
+  for (let i = 0; i < pagesNeeded; i++) {
+    const li = `
+      <li>
+         <button type="button">${i + 1}</button>
+      </li>
+     `;
+    ul.insertAdjacentHTML("beforeend", li);
+    ul.querySelector("button").className = "active";
+  }
+  ul.addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+      const button = e.target;
+      const ul = button.parentNode.parentNode;
+      const listItems = ul.children;
+      for (let li of listItems) {
+        li.firstElementChild.removeAttribute("class");
+      }
+      button.className = "active";
+      showPage(list, parseInt(button.textContent));
+    }
+  });
+};
 
 // Call functions
+showPage(data, 1);
+addPagination(data);
