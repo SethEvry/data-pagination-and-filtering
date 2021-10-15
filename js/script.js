@@ -19,10 +19,11 @@ const showPage = (list, page) => {
   const endIndex = page * 9;
   const ul = document.querySelector(".student-list");
   ul.innerHTML = "";
-  for (let i = 0; i < list.length; i++) {
-    if (i >= startIndex && i < endIndex) {
-      const student = list[i];
-      const template = `
+  if (list.length > 0) {
+    for (let i = 0; i < list.length; i++) {
+      if (i >= startIndex && i < endIndex) {
+        const student = list[i];
+        const template = `
       <li class="student-item cf">
       <div class="student-details">
         <img class="avatar" src=${student.picture.medium} alt="Profile Picture">
@@ -34,8 +35,12 @@ const showPage = (list, page) => {
       </div>
     </li> 
       `;
-      ul.insertAdjacentHTML("beforeend", template);
+        ul.insertAdjacentHTML("beforeend", template);
+      }
     }
+  } else {
+    const noResults = `<h1 class='no-results'>No results found!</h1>`;
+    ul.insertAdjacentHTML("beforeend", noResults);
   }
 };
 
