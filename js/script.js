@@ -59,6 +59,7 @@ const addPagination = (list) => {
       </li>
      `;
     ul.insertAdjacentHTML("beforeend", li);
+    //Set page 1 active first load
     ul.querySelector("button").className = "active";
   }
   ul.addEventListener("click", (e) => {
